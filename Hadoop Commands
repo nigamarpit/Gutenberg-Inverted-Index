@@ -1,0 +1,28 @@
+hadoop com.sun.tools.javac.Main WordCount.java
+jar cf wordcount.jar WordCount*.class
+hadoop fs -ls
+hadoop fs -rm wordcount.jar
+hadoop fs -ls
+hadoop fs -copyFromLocal ./wordcount.jar
+hadoop fs -ls
+hadoop fs -cp ./wordcount.jar gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/wordcount.jar
+
+hadoop fs -cp ./wordcount.jar gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/wordcount.jar
+
+
+gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/wordcount.jar
+gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/dev_data
+gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/output
+
+hadoop fs -getmerge gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/output ./output.txt 
+hadoop fs -copyFromLocal ./output.txt
+hadoop fs -cp ./output.txt gs://dataproc-73296814-5a29-4106-9e99-a5c31241ea98-us/output.txt
+
+
+gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/wordcount.jar
+gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/dev_data
+gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/output
+
+hadoop fs -getmerge gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/output ./output.txt 
+hadoop fs -copyFromLocal ./output.txt
+hadoop fs -cp ./output.txt gs://dataproc-4cc6a0af-6bc6-4e07-bd18-f17ab4a304a2-us/output.txt
